@@ -33,7 +33,7 @@ import sun.nio.ch.DirectBuffer;
  */
 @SuppressWarnings("restriction")
 public class RrdNioBackend extends RrdFileBackend {
-	private static final Timer fileSyncTimer = new Timer(true);
+	private static Timer fileSyncTimer = new Timer(true);
 
 	private MappedByteBuffer m_byteBuffer;
 	private final TimerTask m_syncTask = new TimerTask() {
@@ -62,6 +62,26 @@ public class RrdNioBackend extends RrdFileBackend {
 		    super.close();
 			throw ioe;
 		}
+	}
+	
+	/**
+	 * Sets the timer to allows control over its thread, for example from a webapp.
+	 * @param newFileSyncTimer Timer
+	 */
+	public static void setFileSyncTimer(Timer newFileSyncTimer) {
+		if (newFileSyncTimer == null) {
+			throw new NullPointerException();
+		}
+		fileSyncTimer.cancel();
+		fileSyncTimer = newFileSyncTimer;
+	}
+
+	/**
+	 * Return the timer.
+	 * @return Timer
+	 */
+	public static Timer getFileSyncTimer() {
+		return fileSyncTimer;
 	}
 
 	private void mapFile() throws IOException {
