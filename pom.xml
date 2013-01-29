@@ -6,11 +6,13 @@
   <packaging>jar</packaging>
 
   <name>JRobin</name>
-  <version>1.5.15-SNAPSHOT</version>
+  <version>1.5.15</version>
+  <classifier>JRB-26</classifier>
   <description>
     JRobin is a 100% pure Java alternative to RRDTool, with about exactly the same specifications. If you provide the
     same data to RRDTool and JRobin, you will get exactly the same results and graphs. All standard RRDTool operations
     are supported.
+	This is a fork to address http://issues.opennms.org/browse/JRB-26 
   </description>
   <url>http://www.jrobin.org/</url>
   <inceptionYear>2003</inceptionYear>
